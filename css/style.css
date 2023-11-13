@@ -1,0 +1,215 @@
+@import url("https://fonts.googleapis.com/css2?family=AR+One+Sans:wght@400;500;600&display=swap");
+
+[data-color-mode="light"] {
+  --main-bg-color: linear-gradient(
+    90.2deg,
+    rgba(79, 255, 255, 1) 0.3%,
+    rgba(0, 213, 255, 1) 99.8%
+  );
+  --calculator-bg-color: #f8f4ff;
+  --calculator-display-color: hsl(240, 3%, 11%);
+  --calculator-number-bg-color: #ebebeb;
+  --calculator-operator-bg-color: #f3e5ab;
+  --calculator-operator-selected-bg-color: hsl(228, 100%, 75%);
+  --calculator-clear-bg-color: #ffbf00;
+  --calculator-number-color: hsl(240, 3%, 11%);
+  --calculator-operator-color: hsl(240, 3%, 11%);
+  --calculator-clear-color: hsl(240, 3%, 11%);
+}
+
+[data-color-mode="dark"] {
+  --main-bg-color: linear-gradient(316deg, #310e68 0%, #5f0f40 74%);
+  --calculator-bg-color: #181818;
+  --calculator-display-color: hsl(217, 100%, 94%);
+  --calculator-number-bg-color: hsl(29, 35%, 24%);
+  --calculator-operator-bg-color: #03c03c;
+  --calculator-operator-selected-bg-color: hsl(228, 100%, 50%);
+  --calculator-clear-bg-color: hsl(357, 73%, 47%);
+  --calculator-number-color: hsl(217, 100%, 94%);
+  --calculator-operator-color: hsl(240, 3%, 11%);
+  --calculator-clear-color: hsl(240, 3%, 11%);
+}
+
+/* ==================
+ Base styles 
+ =====================*/
+
+html {
+  font-family: "AR One Sans", sans-serif;
+  line-height: 1.5;
+}
+
+body {
+  min-height: 100vh;
+  background-image: var(--main-bg-color);
+  padding-block: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ==================
+  mode-toggle button
+ =====================*/
+
+.mode-toggle {
+  margin-bottom: 2rem;
+  display: flex;
+  gap: 0.5rem;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.appearance {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--calculator-display-color);
+}
+
+.btn-toggle {
+  border: 0;
+  border-radius: 0.3rem;
+  padding: 0.5em 1.5em;
+  background-color: #e09540;
+  color: var(--calculator-bg-color);
+  font-size: 1.1rem;
+  font-weight: 500;
+  position: relative;
+  cursor: pointer;
+}
+
+.btn-toggle::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border: 2px solid #e09540;
+  border-radius: 0.3rem;
+  transition: inset 300ms cubic-bezier(0.68, -0.55, 0.27, 1.55);
+  z-index: -1;
+}
+
+.btn-toggle:hover::after {
+  cursor: pointer;
+  inset: calc(2px * -2);
+}
+
+/* ==================
+  Calculator
+ =====================*/
+
+.container {
+  width: min(100% - 1rem, 400px);
+  /* margin-inline: auto; */
+}
+
+.calculator {
+  background-color: var(--calculator-bg-color);
+  box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.15);
+  border-radius: 0.7rem;
+  overflow: hidden;
+  padding: 0.9rem;
+}
+
+.calculator__display {
+  border-bottom: 2px solid var(--calculator-display-color);
+  color: var(--calculator-display-color);
+  padding: 0.75rem 1rem;
+  text-align: right;
+  font-size: 3rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+}
+
+.calculator__keys {
+  display: grid;
+  gap: 0.3rem;
+  grid-template-columns: repeat(4, auto);
+  grid-template-areas:
+    ". . . ."
+    "seven eight nine equal"
+    "four five six equal"
+    "one two three equal"
+    "zero decimal clear clear";
+}
+
+.calculator__keys > button {
+  font-size: 1.5rem;
+  border: 0;
+  border-radius: 0.4rem;
+  padding-block: 1rem;
+}
+
+.one {
+  grid-area: one;
+}
+.two {
+  grid-area: two;
+}
+.three {
+  grid-area: three;
+}
+.four {
+  grid-area: four;
+}
+.five {
+  grid-area: five;
+}
+.six {
+  grid-area: six;
+}
+.seven {
+  grid-area: seven;
+}
+.eight {
+  grid-area: eight;
+}
+.nine {
+  grid-area: nine;
+}
+.zero {
+  grid-area: zero;
+}
+.decimal {
+  grid-area: decimal;
+}
+.clear {
+  grid-area: clear;
+
+  background-color: var(--calculator-clear-bg-color);
+  font-weight: 600;
+  color: var(--calculator-clear-color);
+}
+.equal {
+  grid-area: equal;
+
+  background-color: var(--calculator-operator-bg-color);
+  color: var(--calculator-operator-color);
+}
+
+.equal:active {
+  background-color: rgb(110, 110, 110);
+}
+
+[data-type="operator"] {
+  background-color: var(--calculator-operator-bg-color);
+  color: var(--calculator-operator-color);
+}
+
+[data-type="number"],
+[data-type="decimal"] {
+  background-color: var(--calculator-number-bg-color);
+  color: var(--calculator-number-color);
+  font-weight: 500;
+}
+
+[data-type="operator"]:active,
+[data-type="number"]:active,
+[data-type="clear"]:active,
+[data-type="decimal"]:active {
+  background-color: rgb(110, 110, 110);
+}
+
+[data-state="selected"] {
+  background-color: var(--calculator-operator-selected-bg-color);
+}
