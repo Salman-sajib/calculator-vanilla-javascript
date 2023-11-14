@@ -6,6 +6,8 @@ const calculator = document.querySelector(".calculator");
 const keys = calculator.querySelector(".calculator__keys");
 const display = calculator.querySelector(".calculator__display");
 
+updateDisplay("0");
+
 keys.addEventListener("click", handleKeyClick);
 
 function handleKeyClick(event) {
@@ -37,7 +39,7 @@ function handleKeyClick(event) {
 }
 
 function updateDisplay(value) {
-  // Limit the display to 9 digits.
+  // Limit the display to 10 digits.
   value = value.slice(0, 10);
   display.textContent = value;
 }
@@ -103,7 +105,7 @@ function calculate(firstNumber, operator, secondNumber) {
   if (operator === "times") result = firstNumber * secondNumber;
   if (operator === "divide") result = firstNumber / secondNumber;
 
-  // Limit the result to 9 digits and remove trailing zeros.
+  // Limit the result to 10 digits and remove trailing zeros.
   result = result.toFixed(10).replace(/\.?0+$/, "");
 
   return result;
