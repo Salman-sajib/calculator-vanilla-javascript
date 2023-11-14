@@ -43,11 +43,16 @@ function updateDisplay(value) {
 }
 
 function handleNumberClick(keyValue, displayValue, previousKeyType) {
-  if (displayValue === "0" || previousKeyType === "equal") {
-    updateDisplay(keyValue);
-  } else if (previousKeyType === "operator") {
+  if (
+    displayValue === "0" ||
+    previousKeyType === "equal" ||
+    previousKeyType === "operator"
+  ) {
     updateDisplay(keyValue);
   } else {
+    if (keyValue === "." && displayValue.includes(".")) {
+      return;
+    }
     updateDisplay(displayValue + keyValue);
   }
 }
