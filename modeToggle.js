@@ -1,15 +1,12 @@
-export function initModeToggle() {
-  const body = document.querySelector("body");
-  const toggleButton = document.querySelector(".btn-toggle");
-
+export function initModeToggle(element, toggleButton) {
   let isDarkMode = localStorage.getItem("dark") === "true";
 
   function setMode(isDark) {
     if (isDark) {
-      body.dataset.colorMode = "dark";
+      element.dataset.colorMode = "dark";
       toggleButton.textContent = "Light";
     } else {
-      body.dataset.colorMode = "light";
+      element.dataset.colorMode = "light";
       toggleButton.textContent = "Dark";
     }
 
