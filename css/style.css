@@ -6,7 +6,7 @@
     rgba(79, 255, 255, 1) 0.3%,
     rgba(0, 213, 255, 1) 99.8%
   );
-  --calculator-bg-color: #f8f4ff;
+  --calculator-bg-color: #fffef7;
   --calculator-display-color: hsl(240, 3%, 11%);
   --calculator-number-bg-color: #ebebeb;
   --calculator-operator-bg-color: #f3e5ab;
